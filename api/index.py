@@ -25,7 +25,8 @@ def graph(username):
 
     if text:
         contrib_svg.TEXT_WORD = text.upper()
-
+    if username not in ("peme969", "zmushtare"):
+        return Response("nope", status=401)
     try:
         calendar = contrib_svg.fetch_contributions(username, year, token)
         svg_data = contrib_svg.build_svg(calendar, year, username)
