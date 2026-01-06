@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/graph/:user", "destination": "/api/graph?user=:user" }
+  ]
+}
