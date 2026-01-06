@@ -1,5 +1,18 @@
 {
-  "rewrites": [
-    { "source": "/graph/:user", "destination": "/api/graph?user=:user" }
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/graph/(.*)",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "api/index.py"
+    }
   ]
 }
