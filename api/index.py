@@ -1,13 +1,17 @@
-import os
 import datetime as dt
+import os
+
 from flask import Flask, Response, request
-import contrib_svg
+
+from api import contrib_svg
 
 app = Flask(__name__)
+
 
 @app.get("/")
 def home():
     return "✅ Contribution Graph API is running. Use /graph/<username>"
+
 
 @app.get("/graph/<username>")
 def graph(username):
