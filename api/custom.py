@@ -332,22 +332,6 @@ def build_svg(calendar: dict, year: int, username: str, DARK_PALETTE: dict) -> s
             f'<rect x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
             f'rx="3" ry="3" fill="{final_color}">'
             f"<title>{tooltip}</title>"
-            # X animation: grid → text → text → grid
-            f'<animate attributeName="x" '
-            f'values="{x};{target_x};{target_x};{x}" '
-            f'keyTimes="{ANIM_KEYTIMES}" dur="{ANIM_DURATION}" '
-            f'begin="0s" fill="freeze" />'
-            # Y animation
-            f'<animate attributeName="y" '
-            f'values="{y};{target_y};{target_y};{y}" '
-            f'keyTimes="{ANIM_KEYTIMES}" dur="{ANIM_DURATION}" '
-            f'begin="0s" fill="freeze" />'
-            # Fill animation: final → bright → bright → final
-            f'<animate attributeName="fill" '
-            f'values="{final_color};{LETTER_FILL};{LETTER_FILL};{final_color}" '
-            f'keyTimes="{ANIM_KEYTIMES}" dur="{ANIM_DURATION}" '
-            f'begin="0s" fill="freeze" />'
-            "</rect>"
             "</g>"
         )
     # Legend
