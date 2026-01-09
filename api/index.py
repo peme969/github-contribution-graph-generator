@@ -1,6 +1,6 @@
 import datetime as dt
 import os
-
+import requests
 from flask import Flask, Response, request
 
 from api import contrib_svg
@@ -54,7 +54,7 @@ def graph(username):
 
     except Exception as e:
         return Response(f"Error generating SVG: {str(e)}", status=500)
-@app.get("/custom/<username>")
+@app.post("/custom/<username>")
 def customer(username):
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
@@ -63,14 +63,17 @@ def customer(username):
     # Optional query params
     year = request.args.get("year", type=int) or dt.datetime.now().year
     text = request.args.get("text", default=None, type=str)
-
+    token = request.args.get("graphql token", default=token, type=str)
+    
+    data = request.get_json(silent=True) or {}
+    palette = data.get("palette", {})
     if text:
         custom.TEXT_WORD = text.upper()
     if username not in ("peme969", "zmushtare"):
         return Response("nope", status=401)
     try:
         calendar = custom.fetch_contributions(username, year, token)
-        svg_data = custom.build_svg(calendar, year, username)
+        svg_data = custom.build_svg(calendar, year, username, palette)
 
         return Response(
             svg_data,
