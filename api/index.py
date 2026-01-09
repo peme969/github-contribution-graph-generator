@@ -8,11 +8,11 @@ from api import custom
 app = Flask(__name__)
 
 palette1 = {
-    "NONE": "#151B23",
-    "FIRST_QUARTILE": "#0e4429",
-    "SECOND_QUARTILE": "#006d32",
-    "THIRD_QUARTILE": "#26a641",
-    "FOURTH_QUARTILE": "#39d353",
+    "grade0": "#151B23",
+    "grade1": "#0e4429",
+    "grade2": "#006d32",
+    "grade3": "#26a641",
+    "grade4": "#39d353",
 }
 @app.get("/")
 def home():
