@@ -186,19 +186,25 @@ def build_svg(
                 f'{month_name}</text>'
             )
 
-    # Contribution cells (STATIC)
-    for week_index, week in enumerate(weeks):
-        for day in week["contributionDays"]:
-            weekday = day["weekday"]
-            level = day["contributionLevel"]
-            count = day["contributionCount"]
-            date_str = day["date"]
-
-            # choose fill color
-            if count == 0:
-                fill = palette["grade0"]
+    for cell_index, (week_index, day) in enumerate(all_cells):
+        weekday = day["weekday"]
+        level = day["contributionLevel"]
+        count = day["contributionCount"]
+        date_str = day["date"]
+        # Final (graph) color
+        if count == 0:
+            final_color = DARK_PALETTE["grade0"]
+        else:
+            if level == "grade1":
+                final_color = DARK_PALETTE["grade1"]
+            elif level == "SECOND_QUARTILE":
+                final_color = DARK_PALETTE["grade2"]
+            elif level == "THIRD_QUARTILE":
+                final_color = DARK_PALETTE["grade3"]
+            elif level == "FOURTH_QUARTILE":
+                final_color = DARK_PALETTE["grade4"]
             else:
-                fill = palette.get(level, palette["grade1"])
+                final_color = DARK_PALETTE["grade1"]
 
             x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
             y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
