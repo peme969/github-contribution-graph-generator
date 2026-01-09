@@ -142,7 +142,7 @@ def build_svg(
     svg_parts.append(
         f'<text x="{TITLE_X}" y="{TITLE_Y}" '
         f'font-family="{FONT_FAMILY}" font-size="18" fill="#8b949e">'
-        f'{year}: <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions'
+        f'<tspan font-weight="800">{username.capitalize()}</tspan> did <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions in {year} '
         f'</text>'
     )
 
