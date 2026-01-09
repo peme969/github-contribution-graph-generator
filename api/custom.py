@@ -141,7 +141,7 @@ def build_svg(
     # Title (no <b>, SVG doesn't support HTML tags)
     svg_parts.append(
         f'<text x="{TITLE_X}" y="{TITLE_Y}" '
-        f'font-family="{FONT_FAMILY}" font-size="18" fill="{text_color}">'
+        f'font-family="{FONT_FAMILY}" font-size="18" fill="#8b949e">'
         f'{year}: <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions'
         f'</text>'
     )
