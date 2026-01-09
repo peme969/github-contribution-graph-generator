@@ -2,7 +2,7 @@ import datetime as dt
 import os
 import requests
 from flask import Flask, Response, request
-
+from flask import jsonify
 from api import contrib_svg
 from api import custom
 app = Flask(__name__)
@@ -103,12 +103,9 @@ def years(username):
         total = dt.datetime.now().year - created
         current_year = dt.datetime.now().year
         years = list(range(created, current_year + 1))
-        return Response(
-            {
-                "total": int(total),
-                "years in Git":years
-            },
-            mimetype="application/json"
+        return jsonify(
+            total=int(total),
+            years_in_git=years
         )
     except Exception as e:
         return Response(f"Error getting yearsy: {str(e)}", status=500)
