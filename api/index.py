@@ -5,7 +5,7 @@ from flask import Flask, Response, request
 from flask import jsonify
 from api import contrib_svg
 from api import custom
-
+from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
