@@ -92,9 +92,15 @@ def fetch_contributions(login: str, year: int, token: str):
     return calendar
 
 # ----------------- SVG -----------------
-def build_svg(calendar: dict, year: int, username: str, palette: dict) -> str:
-    weeks = calendar["weeks"]
+def build_svg(
+    calendar: dict,
+    year: int,
+    username: str,
+    palette: dict,
+    text_color: str = "#8b949e",
+) -> str:
 
+    weeks = calendar["weeks"]
     CELL_SIZE = 11
     CELL_GAP = 3
     CARD_PADDING_LEFT = 46
@@ -143,7 +149,7 @@ def build_svg(calendar: dict, year: int, username: str, palette: dict) -> str:
     # Title (no <b>, SVG doesn't support HTML tags)
     svg_parts.append(
         f'<text x="{TITLE_X}" y="{TITLE_Y}" '
-        f'font-family="{FONT_FAMILY}" font-size="18" fill="#8b949e">'
+        f'font-family="{FONT_FAMILY}" font-size="18" fill="{text_color}">'
         f'{year}: <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions'
         f'</text>'
     )
