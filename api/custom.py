@@ -1,12 +1,5 @@
 """
-GitHub-style contribution SVG with a one-time intro animation:
-
-1. On load: ALL contribution cells fly into place to form TEXT_WORD
-   (e.g. "PEME") in a bright color.
-2. They pause there for a bit so you can actually see it.
-3. They fly back to their true GitHub positions and colors and stay put.
-
-To customize the word, change TEXT_WORD below.
+GitHub-style contribution SVG with a tooltip functionality so you can you see exactly what you did on that day.
 """
 import datetime as dt,sys,os,textwrap,requests
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
