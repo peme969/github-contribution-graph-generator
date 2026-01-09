@@ -3,7 +3,7 @@ GitHub-style contribution SVG with a tooltip functionality so you can you see ex
 """
 import datetime as dt,sys,os,textwrap,requests
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
-DARK_PALETTE = {
+palette = {
     "grade0": "#151B23",
     "grade1": "#0e4429",
     "grade2": "#006d32",
