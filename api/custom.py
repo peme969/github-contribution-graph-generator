@@ -11,6 +11,9 @@ palette5 = {
     "grade3": "#26a641",
     "grade4": "#39d353",
 }
+def xml_text(s: str) -> str:
+    return html.escape(s, quote=False)
+
 def _day_suffix(day: int) -> str:
     if 11 <= day <= 13:
         return "th"
@@ -147,13 +150,12 @@ def build_svg(
     svg_parts.append(
         f'<rect width="{width}" height="{height}" fill="{background_color}" />'
     )
-
-    # Title (no <b>, SVG doesn't support HTML tags)
+title_text = f'<tspan font-weight="800">{username.capitalize()}</tspan> did <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions in {year}'
+   # Title (no <b>, SVG doesn't support HTML tags)
     svg_parts.append(
         f'<text x="{TITLE_X}" y="{TITLE_Y}" '
         f'font-family="{FONT_FAMILY}" font-size="18" fill="#8b949e">'
-        f'<tspan font-weight="800">{username.capitalize()}</tspan> did <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions in {year} '
-        f'</text>'
+        f'<text ...>{xml_text(title_text)}</text>'
     )
 
     # Card container
