@@ -214,13 +214,14 @@ def build_svg(
         y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
 
         tooltip = format_tooltip(count, date_str)
-
+        tooltip_escaped = tooltip.replace('"', "&quot;")
         svg_parts.append(
-            f'<rect x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
-            f'rx="3" ry="3" fill="{fill}">'
-            f'<title>{tooltip}</title>'
-            f'</rect>'
+            f'<rect class="day-cell" '
+            f'data-tooltip="{tooltip}" '
+            f'x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
+            f'rx="3" ry="3" fill="{fill}" />'
         )
+
 
     # Legend
     legend_y = CARD_Y + card_height - 10
