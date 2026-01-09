@@ -225,9 +225,10 @@ def build_svg(
 
         tooltip = format_tooltip(count, date_str)
         tooltip_escaped = html.escape(tooltip, quote=True)
+        tooltip_escaped = tooltip_escaped.replace("\n", " ").replace("\r", " ")
         svg_parts.append(
             f'<rect class="day-cell" '
-            f'data-tooltip="{tooltip}" '
+            f'data-tooltip="{tooltip_escaped}" '
             f'x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
             f'rx="3" ry="3" fill="{fill}" />'
         )
