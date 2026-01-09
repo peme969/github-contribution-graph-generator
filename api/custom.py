@@ -4,11 +4,11 @@ GitHub-style contribution SVG with a tooltip functionality so you can you see ex
 import datetime as dt,sys,os,textwrap,requests
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
 DARK_PALETTE = {
-    "NONE": "#151B23",
-    "FIRST_QUARTILE": "#0e4429",
-    "SECOND_QUARTILE": "#006d32",
-    "THIRD_QUARTILE": "#26a641",
-    "FOURTH_QUARTILE": "#39d353",
+    "grade0": "#151B23",
+    "grade1": "#0e4429",
+    "grade2": "#006d32",
+    "grade3": "#26a641",
+    "grade4": "#39d353",
 }
 def _day_suffix(day: int) -> str:
     if 11 <= day <= 13:
@@ -197,9 +197,9 @@ def build_svg(
 
             # choose fill color
             if count == 0:
-                fill = palette["NONE"]
+                fill = palette["grade0"]
             else:
-                fill = palette.get(level, palette["FIRST_QUARTILE"])
+                fill = palette.get(level, palette["grade1"])
 
             x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
             y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
@@ -223,11 +223,11 @@ def build_svg(
     )
 
     legend_colors = [
-        palette["NONE"],
-        palette["FIRST_QUARTILE"],
-        palette["SECOND_QUARTILE"],
-        palette["THIRD_QUARTILE"],
-        palette["FOURTH_QUARTILE"],
+        palette["grade0"],
+        palette["grade1"],
+        palette["grade2"],
+        palette["grade3"],
+        palette["grade4"],
     ]
 
     square_x = legend_x + 40
