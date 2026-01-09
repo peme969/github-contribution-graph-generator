@@ -4,7 +4,7 @@ import os
 from flask import Flask, Response, request
 
 from api import contrib_svg
-
+from api import custom
 app = Flask(__name__)
 
 
@@ -30,6 +30,37 @@ def graph(username):
     try:
         calendar = contrib_svg.fetch_contributions(username, year, token)
         svg_data = contrib_svg.build_svg(calendar, year, username)
+
+        return Response(
+            svg_data,
+            mimetype="image/svg+xml",
+            headers={
+                # Try to reduce caching
+                "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+                "Pragma": "no-cache",
+                "Expires": "0",
+            },
+        )
+
+    except Exception as e:
+        return Response(f"Error generating SVG: {str(e)}", status=500)
+@app.get("/custom/<username>")
+def graph(username):
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        return Response("Missing GITHUB_TOKEN environment variable", status=500)
+
+    # Optional query params
+    year = request.args.get("year", type=int) or dt.datetime.now().year
+    text = request.args.get("text", default=None, type=str)
+
+    if text:
+        custom.TEXT_WORD = text.upper()
+    if username not in ("peme969", "zmushtare"):
+        return Response("nope", status=401)
+    try:
+        calendar = custom.fetch_contributions(username, year, token)
+        svg_data = custom.build_svg(calendar, year, username)
 
         return Response(
             svg_data,
