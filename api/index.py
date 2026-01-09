@@ -12,7 +12,18 @@ app = Flask(__name__)
 def home():
     return "✅ Contribution Graph API is running. Use /graph/<username>"
 
+def total_git(username: str, token: str) -> int:
+    url = f"https://api.github.com/users/{username}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json"
+    }
 
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+
+    created_at = response.json()["created_at"]
+    return int(created_at[:4])
 @app.get("/graph/<username>")
 def graph(username):
     token = os.environ.get("GITHUB_TOKEN")
@@ -30,7 +41,6 @@ def graph(username):
     try:
         calendar = contrib_svg.fetch_contributions(username, year, token)
         svg_data = contrib_svg.build_svg(calendar, year, username)
-
         return Response(
             svg_data,
             mimetype="image/svg+xml",
@@ -44,3 +54,19 @@ def graph(username):
 
     except Exception as e:
         return Response(f"Error generating SVG: {str(e)}", status=500)
+@app.get("/graph/years/<username>")
+def years(username):
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        return Response("Missing GITHUB_TOKEN environment variable", status=500)
+    if username not in ("peme969", "zmushtare"):
+        return Response("nope", status=401)
+    try:
+        created = total_git(username,token)
+        total = dt.datetime.now().year - created
+        return Response(
+            str(total),
+            mimetype="application/json"
+        )
+    except Exception as e:
+        return Response(f"Error getting yearsy: {str(e)}", status=500)
