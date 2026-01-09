@@ -62,7 +62,7 @@ def graph(username):
 
     except Exception as e:
         return Response(f"Error generating SVG: {str(e)}", status=500)
-@app.route("/custom/<username>", methods=["GET","POST"])
+@app.route("/custom/<username>", methods=["GET","POST","OPTIONS"])
 def customer(username):
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
@@ -84,7 +84,7 @@ def customer(username):
             svg_data,
             mimetype="image/svg+xml",
             headers={
-                # Try to reduce caching
+                "Access-Control-Allow-Origin": "*",
                 "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
                 "Pragma": "no-cache",
                 "Expires": "0",
@@ -105,9 +105,17 @@ def years(username):
         total = dt.datetime.now().year - created
         current_year = dt.datetime.now().year
         years = list(range(created, current_year + 1))
-        return jsonify(
+        resp = jsonify(
             total=int(total),
             years_in_git=years
         )
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
     except Exception as e:
         return Response(f"Error getting yearsy: {str(e)}", status=500)
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    return response
