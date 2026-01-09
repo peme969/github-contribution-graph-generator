@@ -3,7 +3,7 @@ GitHub-style contribution SVG with a tooltip functionality so you can you see ex
 """
 import datetime as dt,sys,os,textwrap,requests
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
-palette = {
+palette5 = {
     "grade0": "#151B23",
     "grade1": "#0e4429",
     "grade2": "#006d32",
@@ -89,7 +89,7 @@ def build_svg(
     calendar: dict,
     year: int,
     username: str,
-    palette: dict,
+    palette5: dict,
 ) -> str:
 
     weeks = calendar["weeks"]
@@ -197,17 +197,17 @@ def build_svg(
         date_str = day["date"]
         # Final (graph) color
         if level == "NONE" or count == 0:
-            fill = palette["grade0"]
+            fill = palette5["grade0"]
         elif level == "FIRST_QUARTILE":
-            fill = palette["grade1"]
+            fill = palette5["grade1"]
         elif level == "SECOND_QUARTILE":
-            fill = palette["grade2"]
+            fill = palette5["grade2"]
         elif level == "THIRD_QUARTILE":
-            fill = palette["grade3"]
+            fill = palette5["grade3"]
         elif level == "FOURTH_QUARTILE":
-            fill = palette["grade4"]
+            fill = palette5["grade4"]
         else:
-            fill = palette["grade0"]
+            fill = palette5["grade0"]
 
 
         x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
@@ -232,11 +232,11 @@ def build_svg(
     )
 
     legend_colors = [
-        palette["grade0"],
-        palette["grade1"],
-        palette["grade2"],
-        palette["grade3"],
-        palette["grade4"],
+        palette5["grade0"],
+        palette5["grade1"],
+        palette5["grade2"],
+        palette5["grade3"],
+        palette5["grade4"],
     ]
 
     square_x = legend_x + 40
