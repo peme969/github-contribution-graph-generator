@@ -245,13 +245,16 @@ def build_svg(calendar: dict, year: int, username: str, DARK_PALETTE: dict) -> s
     svg_parts.append(
         f'<rect width="{width}" height="{height}" fill="{background_color}" />'
     )
-    # Title
+    #Title
     svg_parts.append(
-        f'<text x="{TITLE_X}" y="{TITLE_Y}" '
-        f'font-family="{FONT_FAMILY}" font-size="18" '
-        f'fill="#8b949e">{year}: <b>{calendar["totalContributions"]}</b> contributions'
-        f"</text>"
-    )
+    "<g>"
+    f'<rect x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
+    f'rx="3" ry="3" fill="{final_color}">'
+    f"<title>{tooltip}</title>"
+    f"</rect>"
+    "</g>"
+)
+
     # Card
     svg_parts.append(
         f'<rect x="{CARD_X}" y="{CARD_Y}" '
