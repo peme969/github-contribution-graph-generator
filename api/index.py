@@ -5,7 +5,9 @@ from flask import Flask, Response, request
 from flask import jsonify
 from api import contrib_svg
 from api import custom
+
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 palette1 = {
     "grade0": "#151B23",
