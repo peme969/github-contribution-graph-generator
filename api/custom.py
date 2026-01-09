@@ -283,7 +283,7 @@ def build_svg(
     outside_footer_y = height +6
     
     svg_parts.append(
-        f'<a href="{made_by_url}" target="_blank" rel="noopener noreferrer">'
+        f'<a href="{made_by_url}" noreferrer">'
         f'<text x="{outside_footer_x}" y="{outside_footer_y}" '
         f'text-anchor="end" '
         f'font-family="{FONT_FAMILY}" font-size="12" fill="#8b949e">'
