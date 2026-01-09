@@ -185,7 +185,11 @@ def build_svg(
                 f'font-family="{FONT_FAMILY}" font-size="14" fill="#e6edf3">'
                 f'{month_name}</text>'
             )
-
+    all_cells = []
+    for week_index, week in enumerate(weeks):
+        for day in week["contributionDays"]:
+            all_cells.append((week_index, day))
+    total_cells = len(all_cells)
     for cell_index, (week_index, day) in enumerate(all_cells):
         weekday = day["weekday"]
         level = day["contributionLevel"]
