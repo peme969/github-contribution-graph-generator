@@ -287,8 +287,8 @@ def build_svg(
     # OUTSIDE FOOTER (bottom-right corner of whole SVG)
     # "Made by @peme969"
     # ----------------------------
-    outside_footer_x = width - 8
-    outside_footer_y = height - 8
+    outside_footer_x = width - 18
+    outside_footer_y = height - 18
     
     svg_parts.append(
         f'<a href="{made_by_url}" target="_blank" rel="noopener noreferrer">'
