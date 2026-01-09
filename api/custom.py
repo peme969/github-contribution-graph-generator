@@ -90,7 +90,6 @@ def build_svg(
     year: int,
     username: str,
     palette: dict,
-    text_color: str = "#8b949e",
 ) -> str:
 
     weeks = calendar["weeks"]
