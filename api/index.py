@@ -7,7 +7,13 @@ from api import contrib_svg
 from api import custom
 app = Flask(__name__)
 
-
+palette1 = {
+    "NONE": "#151B23",
+    "FIRST_QUARTILE": "#0e4429",
+    "SECOND_QUARTILE": "#006d32",
+    "THIRD_QUARTILE": "#26a641",
+    "FOURTH_QUARTILE": "#39d353",
+}
 @app.get("/")
 def home():
     return "✅ Contribution Graph API is running. Use /graph/<username>"
@@ -65,7 +71,7 @@ def customer(username):
     token = request.args.get("graphql token", default=token, type=str)
     
     data = request.get_json(silent=True) or {}
-    palette = data.get("palette", {})
+    palette = data.get("palette", {},default=palette1)
     if username not in ("peme969", "zmushtare"):
         return Response("nope", status=401)
     try:
