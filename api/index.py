@@ -71,7 +71,7 @@ def customer(username):
     token = request.args.get("graphql token", default=token, type=str)
     
     data = request.get_json(silent=True) or {}
-    palette = data.get("palette", {},default=palette1)
+    palette = data.get("palette", palette1)
     if username not in ("peme969", "zmushtare"):
         return Response("nope", status=401)
     try:
