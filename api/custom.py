@@ -152,12 +152,13 @@ def build_svg(
     )
     title_text = f'<tspan font-weight="800">{username.capitalize()}</tspan> did <tspan font-weight="700">{calendar["totalContributions"]}</tspan> contributions in {year}'
    # Title (no <b>, SVG doesn't support HTML tags)
+
     svg_parts.append(
         f'<text x="{TITLE_X}" y="{TITLE_Y}" '
         f'font-family="{FONT_FAMILY}" font-size="18" fill="#8b949e">'
-        f'<text ...>{xml_text(title_text)}</text>'
+        f'<tspan font-weight="800">{xml_text(title_text)}'
+        f'</text>'
     )
-
     # Card container
     svg_parts.append(
         f'<rect x="{CARD_X}" y="{CARD_Y}" '
