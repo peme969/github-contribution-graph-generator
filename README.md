@@ -1,7 +1,7 @@
 # github-contribution-graph-generator
 flask api for quick, no-cache github contribution graph generation
-Usage:
-### 
+
+## Usage:
 ```python
 GET https://github-contribution-graph-generator.vercel.app/
 gives you a status check
