@@ -96,10 +96,15 @@ def years(username):
     if username not in ("peme969", "zmushtare"):
         return Response("nope", status=401)
     try:
-        created = total_git(username,token)
+        created = int(total_git(username,token))
         total = dt.datetime.now().year - created
+        current_year = dt.datetime.now().year
+        years = list(range(created, current_year + 1))
         return Response(
-            str(total),
+            {
+                "total": int(total),
+                "years in Git":years
+            }
             mimetype="application/json"
         )
     except Exception as e:
