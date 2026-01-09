@@ -265,16 +265,20 @@ def build_svg(
     )
     inside_footer_x = CARD_X + card_width - 8
     inside_footer_y = legend_y - 2
-    
     svg_parts.append(
-        f'<text x="{inside_footer_x}" y="{inside_footer_y - 14}" ...>{repo_label}</text>'
-    )
-    
-    svg_parts.append(
-        f'<a href="{repo_url}" ...>'
-        f'<text x="{inside_footer_x}" y="{inside_footer_y}" ...>{repo_display}</text>'
-        f'</a>'
-    )
+    f'<text x="{inside_footer_x}" y="{inside_footer_y - 14}" '
+    f'text-anchor="end" '
+    f'font-family="{FONT_FAMILY}" font-size="12" fill="#8b949e">'
+    f'{repo_label}</text>'
+)
+
+svg_parts.append(
+    f'<text x="{inside_footer_x}" y="{inside_footer_y}" '
+    f'text-anchor="end" '
+    f'font-family="{FONT_FAMILY}" font-size="12" fill="#8b949e">'
+    f'{repo_display}</text>'
+)
+
 
         # ----------------------------
     # OUTSIDE FOOTER (bottom-right corner of whole SVG)
