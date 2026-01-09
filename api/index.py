@@ -62,13 +62,10 @@ def customer(username):
 
     # Optional query params
     year = request.args.get("year", type=int) or dt.datetime.now().year
-    text = request.args.get("text", default=None, type=str)
     token = request.args.get("graphql token", default=token, type=str)
     
     data = request.get_json(silent=True) or {}
     palette = data.get("palette", {})
-    if text:
-        custom.TEXT_WORD = text.upper()
     if username not in ("peme969", "zmushtare"):
         return Response("nope", status=401)
     try:
