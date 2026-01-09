@@ -195,7 +195,7 @@ def build_text_pixels(text: str, scale: int = 2, spacing: int = 1):
     num_rows = base_rows_count * scale
     return pixels, num_cols, num_rows
 # ----------------- SVG & ANIMATION -----------------
-def build_svg(calendar: dict, year: int, username: str, DARK_PALETTE: dict) -> str:
+def build_svg(calendar: dict, year: int, username: str, palette: dict) -> str:
     weeks = calendar["weeks"]
     CELL_SIZE = 11
     CELL_GAP = 3
