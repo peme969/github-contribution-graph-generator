@@ -196,19 +196,19 @@ def build_svg(
         count = day["contributionCount"]
         date_str = day["date"]
         # Final (graph) color
-        if count == 0:
-            fill = DARK_PALETTE["grade0"]
+        if level == "NONE" or count == 0:
+            fill = palette["grade0"]
+        elif level == "FIRST_QUARTILE":
+            fill = palette["grade1"]
+        elif level == "SECOND_QUARTILE":
+            fill = palette["grade2"]
+        elif level == "THIRD_QUARTILE":
+            fill = palette["grade3"]
+        elif level == "FOURTH_QUARTILE":
+            fill = palette["grade4"]
         else:
-            if level == "grade1":
-                fill = DARK_PALETTE["grade1"]
-            elif level == "SECOND_QUARTILE":
-                fill = DARK_PALETTE["grade2"]
-            elif level == "THIRD_QUARTILE":
-                fill = DARK_PALETTE["grade3"]
-            elif level == "FOURTH_QUARTILE":
-                fill = DARK_PALETTE["grade4"]
-            else:
-                fill = DARK_PALETTE["grade1"]
+            fill = palette["grade0"]
+
 
         x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
         y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
