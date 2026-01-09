@@ -55,7 +55,7 @@ def graph(username):
     except Exception as e:
         return Response(f"Error generating SVG: {str(e)}", status=500)
 @app.get("/custom/<username>")
-def graph(username):
+def customer(username):
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         return Response("Missing GITHUB_TOKEN environment variable", status=500)
