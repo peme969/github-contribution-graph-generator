@@ -197,30 +197,30 @@ def build_svg(
         date_str = day["date"]
         # Final (graph) color
         if count == 0:
-            final_color = DARK_PALETTE["grade0"]
+            fill = DARK_PALETTE["grade0"]
         else:
             if level == "grade1":
-                final_color = DARK_PALETTE["grade1"]
+                fill = DARK_PALETTE["grade1"]
             elif level == "SECOND_QUARTILE":
-                final_color = DARK_PALETTE["grade2"]
+                fill = DARK_PALETTE["grade2"]
             elif level == "THIRD_QUARTILE":
-                final_color = DARK_PALETTE["grade3"]
+                fill = DARK_PALETTE["grade3"]
             elif level == "FOURTH_QUARTILE":
-                final_color = DARK_PALETTE["grade4"]
+                fill = DARK_PALETTE["grade4"]
             else:
-                final_color = DARK_PALETTE["grade1"]
+                fill = DARK_PALETTE["grade1"]
 
-            x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
-            y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
+        x = inner_left + week_index * (CELL_SIZE + CELL_GAP)
+        y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
 
-            tooltip = format_tooltip(count, date_str)
+        tooltip = format_tooltip(count, date_str)
 
-            svg_parts.append(
-                f'<rect x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
-                f'rx="3" ry="3" fill="{fill}">'
-                f'<title>{tooltip}</title>'
-                f'</rect>'
-            )
+        svg_parts.append(
+            f'<rect x="{x}" y="{y}" width="{CELL_SIZE}" height="{CELL_SIZE}" '
+            f'rx="3" ry="3" fill="{fill}">'
+            f'<title>{tooltip}</title>'
+            f'</rect>'
+        )
 
     # Legend
     legend_y = CARD_Y + card_height - 10
