@@ -135,7 +135,7 @@ def build_svg(
     CARD_X = SVG_PADDING
     CARD_Y = TITLE_Y + 18
 
-    background_color = "#00000000"
+    background_color = "none"
     card_color = "#0d1117"
     border_color = "#30363d"
 
