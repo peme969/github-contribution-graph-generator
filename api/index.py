@@ -101,7 +101,7 @@ def years(username):
             {
                 "total": int(total),
                 "years in Git":years
-            }
+            },
             mimetype="application/json"
         )
     except Exception as e:
