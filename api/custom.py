@@ -2,6 +2,7 @@
 GitHub-style contribution SVG with a tooltip functionality so you can you see exactly what you did on that day.
 """
 import datetime as dt,sys,os,textwrap,requests
+import html
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
 palette5 = {
     "grade0": "#151B23",
@@ -223,7 +224,7 @@ def build_svg(
         y = inner_top + weekday * (CELL_SIZE + CELL_GAP)
 
         tooltip = format_tooltip(count, date_str)
-        tooltip_escaped = tooltip.replace('"', "&quot;")
+        tooltip_escaped = html.escape(tooltip, quote=True)
         svg_parts.append(
             f'<rect class="day-cell" '
             f'data-tooltip="{tooltip}" '
